@@ -1,4 +1,4 @@
-<kendo-grid   [kendoGridBinding]="gridData" [selectable]="selectable" (remove)="onRemove($event)" (edit)="editClick($event)"  (add)="onToggle()"     (selectionChange)='onGridSelectionChange($event)'>
+<kendo-grid  [sortable]="true"   [kendoGridBinding]="gridData" [selectable]="selectable" (remove)="onRemove($event)" (edit)="editClick($event)"  (add)="onToggle()"     (selectionChange)='onGridSelectionChange($event)'>
   <ng-template kendoGridToolbarTemplate>
     <button kendoGridAddCommand fillMode="outline" icon="add" #anchor >Add Unicorn</button>
     <button kendoButton (click)="onRemoveAll()" icon="delete" style="color: red;"> Remove all Data</button>
@@ -13,13 +13,12 @@
  <kendo-grid-command-column title="Command">
   <ng-template kendoGridCellTemplate  >
     <button kendoGridEditCommand icon="edit" fillMode="outline" #edit>Edit</button>
-    <kendo-popup [anchor]="edit"><app-popup-detail  *ngIf="showEdit"  [unicorn]="actualUnicorn" (addEvent)="onEditData($event)"></app-popup-detail></kendo-popup>
+    <kendo-popup [anchor]="edit"><app-popup-detail  *ngIf="showEdit"  [unicorn]="editableUnicorn" (addEvent)="onEditData($event)"></app-popup-detail></kendo-popup>
       <button kendoGridRemoveCommand icon="delete" style="color: red;"> Remove</button>
      
      
   </ng-template>
 </kendo-grid-command-column>
-<button  fillMode="outline"  (click)="testDelete()" >Delete Unicorn</button>
 </kendo-grid>
 
 
