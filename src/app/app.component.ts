@@ -1,7 +1,7 @@
 
 import { Component,OnInit } from '@angular/core';
 import { Unicorn } from './unicorn.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import {EditEvent, RemoveEvent, SelectableSettings,SelectionEvent } from '@progress/kendo-angular-grid';
 
 @Component({
@@ -69,8 +69,6 @@ export class AppComponent implements OnInit {
    
     this.editableUnicorn= event.dataItem
     this.editId=event.dataItem._id
-    console.log(this.editId)
-    
    }
 
    onToggle(): void {
@@ -80,8 +78,6 @@ export class AppComponent implements OnInit {
   }
 
   onEditData(unicorn:Unicorn){
-    const editID: string = this.editId
-    console.log(unicorn)
     if(this.editableUnicorn){
     this.http.put(`https://crudcrud.com/api/d20dec3cb8834ccb94ad48a27afa4466/unicorns/${this.editId}`,
       new Unicorn(unicorn.name, unicorn.age, unicorn.colour))    // dont need id sent in object
