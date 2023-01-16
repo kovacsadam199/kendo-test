@@ -1,3 +1,4 @@
+
 export class Unicorn{
    constructor(
     public name:string,
@@ -8,4 +9,13 @@ export class Unicorn{
     get getId(){
             return this._id
     }
+}
+
+export interface UnicornI{
+       
+name:string,
+age: number,
+colour: string,
+_id: string
+            
 }

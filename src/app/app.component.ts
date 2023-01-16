@@ -1,8 +1,9 @@
 
 import { Component,OnInit } from '@angular/core';
-import { Unicorn } from './unicorn.model';
+import { Unicorn, UnicornI } from './unicorn.model';
 import { HttpClient } from '@angular/common/http';
 import {EditEvent, RemoveEvent, SelectableSettings,SelectionEvent } from '@progress/kendo-angular-grid';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -33,14 +34,15 @@ export class AppComponent implements OnInit {
   }
 
   onPostData(unicorn: Unicorn){
-  
-    this.gridData.push(unicorn);
-    this.http.post('https://crudcrud.com/api/23a2fc194dc84a358319a356fa54aaf8/unicorns', unicorn)
-    .subscribe((response:any) => {console.log(response)})
-    this.show=false
+    this.saveUni(unicorn).subscribe((response) => {console.log(response); this.gridData.push(new Unicorn(unicorn.name, unicorn.age, unicorn.colour, response._id))  })
+    this.show=false;
    }
 
-  
+
+  saveUni(unicorn:Unicorn): Observable<any> {
+    return this.http.post('https://crudcrud.com/api/23a2fc194dc84a358319a356fa54aaf8/unicorns', unicorn)
+     
+   }
 
 
    onGridSelectionChange(event:SelectionEvent){
