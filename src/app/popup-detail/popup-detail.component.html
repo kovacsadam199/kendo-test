@@ -1,0 +1,22 @@
+
+    <kendo-floatinglabel text="Name">
+    <kendo-textbox
+          [style.width.px]="200"
+          [clearButton]="true"
+          [(ngModel)]="name">
+    </kendo-textbox>
+    <kendo-floatinglabel text="Colour">
+    <kendo-textbox
+        [style.width.px]="200"
+        [clearButton]="true"
+        [(ngModel)]="colour">
+    </kendo-textbox>
+    <kendo-floatinglabel text="Age">
+    <kendo-textbox
+      [style.width.px]="200"
+      [clearButton]="true"
+      format="^[1-9][0-9]*$" [(ngModel)]="age" >
+    </kendo-textbox>
+    <button kendoButton (click)="onAdd()" fillMode="outline" > Save</button>
+
+
