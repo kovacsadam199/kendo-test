@@ -28,14 +28,14 @@ export class AppComponent implements OnInit {
   gridData: Unicorn[]= [new Unicorn('LittleBrown',1,'brown','u2'),new Unicorn('Turmix',2,'white','u1')];
 
   ngOnInit(): void {
-    this.http.get('https://crudcrud.com/api/d20dec3cb8834ccb94ad48a27afa4466/unicorns') 
+    this.http.get('https://crudcrud.com/api/23a2fc194dc84a358319a356fa54aaf8/unicorns') 
    .subscribe((unicorns:any) => {console.log(unicorns); this.gridData=unicorns})
   }
 
   onPostData(unicorn: Unicorn){
   
     this.gridData.push(unicorn);
-    this.http.post('https://crudcrud.com/api/d20dec3cb8834ccb94ad48a27afa4466/unicorns', unicorn)
+    this.http.post('https://crudcrud.com/api/23a2fc194dc84a358319a356fa54aaf8/unicorns', unicorn)
     .subscribe((response:any) => {console.log(response)})
     this.show=false
    }
@@ -51,13 +51,13 @@ export class AppComponent implements OnInit {
    onRemove(event:RemoveEvent){
     console.log(event)
     this.gridData= this.gridData.filter(item => {return item != event.dataItem})
-    this.http.delete(`https://crudcrud.com/api/d20dec3cb8834ccb94ad48a27afa4466/unicorns/${event.dataItem._id}`)
+    this.http.delete(`https://crudcrud.com/api/23a2fc194dc84a358319a356fa54aaf8/unicorns/${event.dataItem._id}`)
     .subscribe(response => {console.log(response)})
       //
    }
 
    onRemoveAll(){
-    this.http.delete('https://crudcrud.com/api/d20dec3cb8834ccb94ad48a27afa4466/unicorns') // not possible on api
+    this.http.delete('https://crudcrud.com/api/23a2fc194dc84a358319a356fa54aaf8/unicorns') // not possible on api
     .subscribe(response => {console.log(response)})
     this.gridData= []
    }
@@ -79,7 +79,7 @@ export class AppComponent implements OnInit {
 
   onEditData(unicorn:Unicorn){
     if(this.editableUnicorn){
-    this.http.put(`https://crudcrud.com/api/d20dec3cb8834ccb94ad48a27afa4466/unicorns/${this.editId}`,
+    this.http.put(`https://crudcrud.com/api/23a2fc194dc84a358319a356fa54aaf8/unicorns/${this.editId}`,
       new Unicorn(unicorn.name, unicorn.age, unicorn.colour))    // dont need id sent in object
     .subscribe(response => {console.log(response)})
     const id = this.gridData.indexOf(this.editableUnicorn)
@@ -92,6 +92,7 @@ export class AppComponent implements OnInit {
   }
 
 
+  // new added unicorn can't be edited remotely until data is fetched again because of id is assigned at post
 
 
   // change link when testing requests
