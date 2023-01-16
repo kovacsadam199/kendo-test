@@ -10,12 +10,3 @@ export class Unicorn{
             return this._id
     }
 }
-
-export interface UnicornI{
-       
-name:string,
-age: number,
-colour: string,
-_id: string
-            
-}

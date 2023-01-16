@@ -1,6 +1,6 @@
 
 import { Component,OnInit } from '@angular/core';
-import { Unicorn, UnicornI } from './unicorn.model';
+import { Unicorn} from './unicorn.model';
 import { HttpClient } from '@angular/common/http';
 import {EditEvent, RemoveEvent, SelectableSettings,SelectionEvent } from '@progress/kendo-angular-grid';
 import { Observable } from 'rxjs';
